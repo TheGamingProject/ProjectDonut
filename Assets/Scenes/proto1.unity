@@ -154,6 +154,7 @@ GameObject:
   - 61: {fileID: 8304993}
   - 50: {fileID: 8304992}
   - 114: {fileID: 8304994}
+  - 114: {fileID: 8304995}
   m_Layer: 0
   m_Name: donut
   m_TagString: Untagged
@@ -258,6 +259,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeed: 7
+--- !u!114 &8304995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: f64003edfdf890d46becbc628aab6a8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1660325297}
+  m_GameObject: {fileID: 8304988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf92e9985d48fec42970690c8b22fd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &21659124
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +737,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1368627175}
   m_Layer: 0
-  m_Name: 2 - Foreground
+  m_Name: 2 - Foreground (player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -777,8 +790,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1527205055}
+  - 114: {fileID: 1527205056}
+  - 114: {fileID: 1527205057}
   m_Layer: 0
-  m_Name: 1 - Middleground
+  m_Name: 1 - Middleground (ground items)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,6 +810,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2068319980}
+--- !u!114 &1527205056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527205054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a1a135d39e648469e5c88f122bf922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 0, y: 7.5}
+  removalY: 10
+--- !u!114 &1527205057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1527205054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6dbda22c8e74b45a0034ffa66a6b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawneePrefab: {fileID: 400000, guid: b8060c5c1dee8df4b996091a7edb413f, type: 2}
+  spawnRate: .100000001
+  spawnY: -20
+  maxRandomDistX: .5
 --- !u!1 &1619208467
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +848,7 @@ GameObject:
   - 4: {fileID: 1619208468}
   - 114: {fileID: 1619208469}
   m_Layer: 0
-  m_Name: 0 - Background
+  m_Name: 0 - Background (ground)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -836,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b438431a1b8b0ff4eb0c9c9409096da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 9}
+  speed: {x: 0, y: 7.5}
   isLinkedToCamera: 0
   isLooping: 1
 --- !u!1001 &1660325297
