@@ -38,4 +38,46 @@ public class ControlsCatcher : MonoBehaviour
 	{
 		playerDonut.GetComponent<Controls>().release();
 	}
+
+	void OnGUI () {
+		int buttonWidth = Screen.width / 2;
+		int buttonHeight = (Screen.height / 6);
+		bool modified = false;
+
+		if (
+			GUI.RepeatButton(
+			new Rect(
+			0,
+			Screen.height * 5 / 6,
+			buttonWidth,
+			buttonHeight
+			),
+			"LEFT"
+			)
+			)
+		{
+			modified = true;
+			playerDonut.GetComponent<Controls>().press(-1);
+		} 
+		if (
+			GUI.RepeatButton(
+			new Rect(
+			buttonWidth,
+			(Screen.height * 5 / 6),
+			buttonWidth,
+			buttonHeight
+			),
+			"RIGHT"
+			)
+			)
+		{
+			modified = true;
+			playerDonut.GetComponent<Controls>().press(1);
+		} 
+
+		if (modified == false) {
+			playerDonut.GetComponent<Controls>().release();
+		}
+
+	}
 }

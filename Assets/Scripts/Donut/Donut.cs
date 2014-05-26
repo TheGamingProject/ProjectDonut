@@ -21,7 +21,8 @@ public class Donut : MonoBehaviour
 		Sprinkle sprinkle = collider.gameObject.GetComponent<Sprinkle>();
 		if (sprinkle != null) {
 			GameObject.Find("GUI").BroadcastMessage("addScore", sprinkle.getPointWorth());
-			
+			var sprinkleSprite = sprinkle.gameObject.GetComponent<SpriteRenderer>().sprite;
+			gameObject.BroadcastMessage("addSprinklesToDonut", sprinkleSprite);
 			Destroy(sprinkle.gameObject);
 		}
 		
