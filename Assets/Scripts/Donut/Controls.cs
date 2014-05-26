@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TouchScript;
 
 public class Controls : MonoBehaviour
 {
@@ -15,22 +16,9 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		int inputX = 0;
 
-		if (Input.GetMouseButton(0)) {
-
-			if (Input.mousePosition.x < 176) {
-				inputX = -1;
-			} else {
-				inputX = 1;
-			}
-		} else {
-			movement = new Vector2(0,0);
-		}
-		
-		movement = new Vector2(xSpeed * inputX, 0);
 	}
-
+	
 	void FixedUpdate() {
 		rigidbody2D.velocity = movement;
 		
@@ -50,6 +38,14 @@ public class Controls : MonoBehaviour
 			Mathf.Clamp (transform.position.x, leftBorder - .2f, rightBorder + .2f),
 			transform.position.y, transform.position.z)
 		                      );
+	}
+
+	public void press(float dir) {
+		movement = new Vector2(xSpeed * dir, 0);
+	}
+
+	public void release() {
+		movement = new Vector2(xSpeed * 0, 0);
 	}
 }
 
