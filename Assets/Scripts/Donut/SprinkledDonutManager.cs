@@ -5,8 +5,10 @@ public class SprinkledDonutManager : MonoBehaviour {
 	public Transform donutSprinklePrefab;
 
 	public float sprinkleSpeed = 1;
+	public int sprinkleLimit = 200;
+	private int spinkleCount = 0;
 
-	private float donutHeight = .8f, donutWidth = .70f;
+	private float donutHeight = .85f, donutWidth = .70f;
 	private int bottomZ = 1, topZ = -1;
 
 	void Start () {
@@ -31,6 +33,7 @@ public class SprinkledDonutManager : MonoBehaviour {
 	}
 
 	void addSprinklesToDonut (Sprite sprinkleSprite) {
+		if (spinkleCount++ > sprinkleLimit) return;
 
 		Transform newSprinkle = (Transform) Instantiate(donutSprinklePrefab, new Vector3(0f, 0f, 0f), transform.rotation);
 		newSprinkle.parent = transform;

@@ -7,6 +7,11 @@ public class Controls : MonoBehaviour
 	public float xSpeed = 10.0f;
 	private Vector2 movement;
 
+	private float iPx = 0.0f;
+	public float tiltThreshold = .1f;
+	public float fullSpeedTiltThreshold = .25f;
+	private bool halfSpeed = false;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -16,7 +21,17 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+		iPx = Input.acceleration.x;
+		if (Mathf.Abs(iPx) > tiltThreshold) {
+			var inputX = Mathf.Sign(iPx);
+			if (Mathf.Abs(iPx) < fullSpeedTiltThreshold) halfSpeed = true;
+			else halfSpeed = false;
+			press (inputX);
+		} else if (Mathf.Abs(iPx) > 0 && Mathf.Abs(iPx) < tiltThreshold) {
+			release();
+			halfSpeed = false;
+		}
+		GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
 	}
 	
 	void FixedUpdate() {
@@ -41,11 +56,13 @@ public class Controls : MonoBehaviour
 	}
 
 	public void press(float dir) {
-		movement = new Vector2(xSpeed * dir, 0);
+		float speed = xSpeed * (halfSpeed ? .5f : 1);
+		movement = new Vector2(speed * dir, 0);
 	}
 
 	public void release() {
-		movement = new Vector2(xSpeed * 0, 0);
+		if (Mathf.Abs(iPx) < tiltThreshold)
+			movement = new Vector2(xSpeed * 0, 0);
 	}
 }
 
