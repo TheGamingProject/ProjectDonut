@@ -12,6 +12,8 @@ public class Controls : MonoBehaviour
 	public float fullSpeedTiltThreshold = .25f;
 	private bool halfSpeed = false;
 
+	private bool disableTilt = false;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -21,7 +23,7 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		iPx = Input.acceleration.x;
+		iPx = disableTilt ? 0 : Input.acceleration.x;
 		if (Mathf.Abs(iPx) > tiltThreshold) {
 			var inputX = Mathf.Sign(iPx);
 			if (Mathf.Abs(iPx) < fullSpeedTiltThreshold) halfSpeed = true;
@@ -32,6 +34,23 @@ public class Controls : MonoBehaviour
 			halfSpeed = false;
 		}
 		GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
+	}
+
+	void OnGUI () {
+		if (
+			GUI.Button(
+			new Rect(
+			10,
+			10,
+			100,
+			50
+			),
+			"Toggle Tilt"
+			)
+			)
+		{
+			disableTilt = !disableTilt;
+		} 
 	}
 	
 	void FixedUpdate() {
