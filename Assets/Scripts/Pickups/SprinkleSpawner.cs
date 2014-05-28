@@ -8,13 +8,13 @@ public class SprinkleSpawner : MonoBehaviour {
 	private float spawnCooldown;
 	private int spawnedCount = 0;
 
+	public float spawnXRange = 5.0f; // from the center
 	public float spawnY = -20f;
 	public float maxRandomDistX = 1;
 
 	private SpawnPattern currentSpawnPattern; 
 
-	public float minGap = 2.0f;
-	public float gapRange = 3.0f;
+	public Vector2 timeInBetweenPatternsRange = new Vector2(.5f, 1.5f);
 
 	void Start () {
 		spawnCooldown = spawnRate;
@@ -35,8 +35,8 @@ public class SprinkleSpawner : MonoBehaviour {
 				spawnCooldown = next.cooldown;
 				spawnedCount++;
 			} else {
-				currentSpawnPattern = getLanePattern();
-				spawnCooldown = Random.Range(0, gapRange) + minGap;
+				currentSpawnPattern = getRandomPattern();
+				spawnCooldown = Random.Range(0, timeInBetweenPatternsRange.y - timeInBetweenPatternsRange.x) + timeInBetweenPatternsRange.x;
 			}
 		}
 	}
@@ -51,10 +51,29 @@ public class SprinkleSpawner : MonoBehaviour {
 		spawnRate = 10000000;
 	}
 
+	private SpawnPattern getRandomPattern () {
+		Dictionary<int, float> weights = new Dictionary<int, float>();
+		weights.Add(0, 40f);
+		weights.Add(1, 40f);
+		weights.Add(2, 20f);
+		var pick = Weighted.getWeightedPick(weights);
+
+		switch (pick) {
+		case 0:
+			return getDiagonalPattern();
+		case 1:
+			return getLanePattern();
+		case 2:
+			return getDumbPattern();
+		default:
+			return null;
+		}
+	}
+
 	private SpawnPattern getLanePattern () {
 		SpawnPattern pattern = new SpawnPattern();
 
-		float x = Random.Range(0, 5) - 2.5f;
+		float x = Random.Range(0, spawnXRange) - spawnXRange/2;
 
 		int length = Random.Range(0, 15) + 5;
 
@@ -69,10 +88,44 @@ public class SprinkleSpawner : MonoBehaviour {
 		return pattern;
 	}
 
-	private void getDumbPattern () {
-		//float lastX = 0;
+	private SpawnPattern getDumbPattern () {
+		SpawnPattern pattern = new SpawnPattern();
 
-		//float randomX = lastX + Random.Range(0, maxRandomDistX * 2) - maxRandomDistX;
+		float x =  Random.Range(0, spawnXRange) - spawnXRange/2;
+		int length = Random.Range(0, 15) + 5;
+
+		for (int i=0; i<length; i++) {
+			Spawn s = new Spawn();
+			
+			x = x + Random.Range(0, maxRandomDistX * 2) - maxRandomDistX;
+			s.location = new Vector2(x, spawnY);
+			s.cooldown = spawnRate;
+			
+			pattern.spawns.Add(s);
+		}
+		
+		return pattern;
+	}
+
+	private SpawnPattern getDiagonalPattern () {
+		SpawnPattern pattern = new SpawnPattern();
+		
+		float x = Random.Range(0, spawnXRange) - spawnXRange/2;
+		float xGap = Random.Range(0, .3f) + .2f;
+		xGap *= x < 0 ? 1 : -1;
+
+		int length = Random.Range(0, 7) + 5;
+		
+		for (int i=0; i<length; i++) {
+			Spawn s = new Spawn();
+			x = x + xGap;
+			s.location = new Vector2(x, spawnY);
+			s.cooldown = spawnRate;
+			
+			pattern.spawns.Add(s);
+		}
+		
+		return pattern;
 	}
 }
 

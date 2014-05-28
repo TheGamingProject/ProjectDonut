@@ -992,10 +992,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawneePrefab: {fileID: 400000, guid: b8060c5c1dee8df4b996091a7edb413f, type: 2}
   spawnRate: .100000001
+  spawnXRange: 5
   spawnY: -20
   maxRandomDistX: .75
-  minGap: 1
-  gapRange: 2
+  timeInBetweenPatternsRange: {x: .5, y: 1.5}
 --- !u!1 &1619208467
 GameObject:
   m_ObjectHideFlags: 0
