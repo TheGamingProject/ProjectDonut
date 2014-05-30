@@ -9,20 +9,19 @@ public class ControlsCatcher : MonoBehaviour
 	// https://github.com/InteractiveLab/TouchScript/wiki/Gestures
 	public Transform playerDonut;
 	
-	private void OnEnable()
-	{
+	private void OnEnable() {
 		GetComponent<PressGesture>().Pressed += pressedHandler;
 		GetComponent<ReleaseGesture>().Released += releasedHandler;
+		GetComponent<FlickGesture>().Flicked += flickHandler;
 	}
 	
-	private void OnDisable()
-	{
+	private void OnDisable() {
 		GetComponent<PressGesture>().Pressed -= pressedHandler;
 		GetComponent<ReleaseGesture>().Released -= releasedHandler;
+		GetComponent<FlickGesture>().Flicked -= flickHandler;
 	}
 	
-	private void pressedHandler(object sender, EventArgs e)
-	{
+	private void pressedHandler(object sender, EventArgs e) {
 		var gesture = sender as PressGesture;
 		ITouchHit hit;
 		gesture.GetTargetHitResult(out hit);
@@ -34,9 +33,18 @@ public class ControlsCatcher : MonoBehaviour
 		playerDonut.GetComponent<Controls>().press(dir);
 	}
 
-	private void releasedHandler(object sender, EventArgs e)
-	{
+	private void releasedHandler(object sender, EventArgs e) {
 		playerDonut.GetComponent<Controls>().release();
+	}
+
+	private void flickHandler (object sender, EventArgs e) {
+		FlickGesture gesture = sender as FlickGesture;
+
+		if (gesture.ScreenFlickVector.x > 0) {
+			Debug.Log("flicked right");
+		} else {
+			Debug.Log("flicked left");
+		}
 	}
 
 	void OnGUI () {

@@ -441,6 +441,7 @@ GameObject:
   - 65: {fileID: 236626245}
   - 114: {fileID: 236626246}
   - 114: {fileID: 236626239}
+  - 114: {fileID: 236626247}
   m_Layer: 0
   m_Name: Plane - Controls
   m_TagString: Untagged
@@ -564,6 +565,29 @@ MonoBehaviour:
   requireGestureToFail: {fileID: 0}
   friendlyGestures: []
   ignoreChildren: 0
+--- !u!114 &236626247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236626238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1254797990, guid: 20c2a163775f09b4cafa29b19d0c9204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  advancedProps: 0
+  combineTouches: 0
+  combineTouchesInterval: .300000012
+  useSendMessage: 0
+  sendStateChangeMessages: 0
+  sendMessageTarget: {fileID: 0}
+  requireGestureToFail: {fileID: 0}
+  friendlyGestures: []
+  flickTime: .100000001
+  minDistance: 1
+  movementThreshold: .5
+  direction: 1
 --- !u!1 &291952174
 GameObject:
   m_ObjectHideFlags: 0
