@@ -14,15 +14,20 @@ public class Controls : MonoBehaviour
 
 	private bool disableTilt = false;
 
-	// Use this for initialization
-	void Start ()
-	{
+	private bool isflipping = false;
+	public float flipSpeed = 10.0f;
+	public float flipTime = .5f;
+	private float flipCooldown = 0.0f;
 
+	private Animator animator;
+
+	// Use this for initialization
+	void Start () {
+		animator = GetComponentInChildren<Animator>();
 	}
 
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
 		iPx = disableTilt ? 0 : Input.acceleration.x;
 		if (Mathf.Abs(iPx) > tiltThreshold) {
 			var inputX = Mathf.Sign(iPx);
@@ -34,6 +39,15 @@ public class Controls : MonoBehaviour
 			halfSpeed = false;
 		}
 		GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
+
+		// update flip animation
+		if (isflipping && flipCooldown > 0) {
+			flipCooldown -= Time.deltaTime;
+
+			if (flipCooldown <= 0) {
+				endFlipping();
+			}
+		}
 	}
 
 	void OnGUI () {
@@ -75,13 +89,43 @@ public class Controls : MonoBehaviour
 	}
 
 	public void press(float dir) {
+		if (isflipping) return;
+
 		float speed = xSpeed * (halfSpeed ? .5f : 1);
 		movement = new Vector2(speed * dir, 0);
 	}
 
 	public void release() {
+		if (isflipping) return;
+
 		if (Mathf.Abs(iPx) < tiltThreshold)
-			movement = new Vector2(xSpeed * 0, 0);
+			movement = new Vector2(0, 0);
+	}
+
+	public void flickedHorizontally(int dir) {
+		if (isflipping) return;
+
+		isflipping = true;
+
+		if (dir > 0) {
+			Debug.Log("flicked right");
+		} else {
+			Debug.Log("flicked left");
+		}
+
+		movement = new Vector2(flipSpeed * dir, 0);
+		animator.SetInteger("State", 1);
+		flipCooldown = flipTime;
+		GetComponentInChildren<SprinkledDonutManager>().hideSprinkles();
+		GetComponent<BoxCollider2D>().size = new Vector2(1f,1f);
+	}
+	 
+	void endFlipping () {
+		animator.SetInteger("State", 0);
+		movement = new Vector2(0, 0);
+		isflipping = false;
+		GetComponentInChildren<SprinkledDonutManager>().showSprinkles();
+		GetComponent<BoxCollider2D>().size = new Vector2(.6f,1f);
 	}
 }
 

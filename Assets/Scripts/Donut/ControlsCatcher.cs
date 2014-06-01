@@ -41,9 +41,9 @@ public class ControlsCatcher : MonoBehaviour
 		FlickGesture gesture = sender as FlickGesture;
 
 		if (gesture.ScreenFlickVector.x > 0) {
-			Debug.Log("flicked right");
+			playerDonut.GetComponent<Controls>().flickedHorizontally(1);
 		} else {
-			Debug.Log("flicked left");
+			playerDonut.GetComponent<Controls>().flickedHorizontally(-1);
 		}
 	}
 

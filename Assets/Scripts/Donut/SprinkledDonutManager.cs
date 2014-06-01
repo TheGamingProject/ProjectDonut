@@ -45,5 +45,17 @@ public class SprinkledDonutManager : MonoBehaviour {
 		newSprinkle.Rotate(new Vector3(0.0f, 0.0f, Random.Range(0, 360)));
 		newSprinkle.GetComponent<SpriteRenderer>().sprite = sprinkleSprite;
 	}
+
+	public void hideSprinkles () {
+		foreach (Transform donutSprinkle in transform) {
+			donutSprinkle.GetComponent<SpriteRenderer>().enabled = false;
+		}
+	}
+
+	public void showSprinkles () {
+		foreach (Transform donutSprinkle in transform) {
+			donutSprinkle.GetComponent<SpriteRenderer>().enabled = true;
+		}
+	}
 }
 
