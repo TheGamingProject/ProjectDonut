@@ -1,19 +1,28 @@
 using UnityEngine;
 using System.Collections;
 
-public class Donut : MonoBehaviour
-{
+public class Donut : MonoBehaviour {
 
-	// Use this for initialization
-	void Start ()
-	{
+	private float slowedDownAmount = 1.0f, slowedDownAmountTotal = .5f; // none
+	private float slowedDownCooldown = 0.0f, slowedDownTimeTotal = 0.0f;
+
+
+	void Start () {
 
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
+		if (slowedDownCooldown > 0) {
+			slowedDownCooldown -= Time.deltaTime;
 
+			if (slowedDownCooldown <= 0) {
+				transform.parent.parent.GetComponent<LevelSpeed>().resetSpeedModifier();
+			} else {
+				slowedDownAmount = 1.0f - slowedDownCooldown / slowedDownTimeTotal * slowedDownAmountTotal;
+				Debug.Log(slowedDownCooldown + ": " + slowedDownAmount);
+				transform.parent.parent.GetComponent<LevelSpeed>().setSpeedModifier(slowedDownAmount);
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -29,7 +38,20 @@ public class Donut : MonoBehaviour
 
 			Destroy(sprinkle.gameObject);
 		}
+
+		Sugarpile sugarpile = collider.gameObject.GetComponent<Sugarpile>();
+		if (sugarpile != null) {
+			//AudioSource noise = GetComponents<AudioSource>()[0];
+			//noise.Play();
+			
+			//var sugarpileSprite = sugarpile.gameObject.GetComponent<SpriteRenderer>().sprite;
+			//gameObject.BroadcastMessage("addSugarPileToDonut", sugarpileSprite);
+
+			Debug.Log("Hit sugarpile");
+			slowedDownAmount = slowedDownAmountTotal = sugarpile.getSlowDownModifier();
+			slowedDownCooldown = slowedDownTimeTotal = sugarpile.getSlowDownTimeLength();
+			Destroy(sugarpile.gameObject);
+		}
 		
 	}
 }
-

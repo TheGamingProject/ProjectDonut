@@ -38,7 +38,7 @@ public class Controls : MonoBehaviour
 			release();
 			halfSpeed = false;
 		}
-		GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
+		//GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
 
 		// update flip animation
 		if (isflipping && flipCooldown > 0) {

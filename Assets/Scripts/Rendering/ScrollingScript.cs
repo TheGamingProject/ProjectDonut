@@ -13,7 +13,7 @@ public class ScrollingScript : MonoBehaviour
 	/// <summary>
 	/// Scrolling speed
 	/// </summary>
-	public Vector2 speed = new Vector2(10, 10);
+	//public Vector2 speed = new Vector2(10, 10);
 
 	/// <summary>
 	/// Movement should be applied to camera
@@ -64,8 +64,8 @@ public class ScrollingScript : MonoBehaviour
 	{
 		// Movement
 		Vector3 movement = new Vector3(
-			speed.x,
-			speed.y,
+			0,
+			transform.parent.GetComponent<LevelSpeed>().Speed,
 			0);
 		
 		movement *= Time.deltaTime;
