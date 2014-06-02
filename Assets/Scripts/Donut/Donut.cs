@@ -19,7 +19,7 @@ public class Donut : MonoBehaviour {
 				transform.parent.parent.GetComponent<LevelSpeed>().resetSpeedModifier();
 			} else {
 				slowedDownAmount = 1.0f - slowedDownCooldown / slowedDownTimeTotal * slowedDownAmountTotal;
-				Debug.Log(slowedDownCooldown + ": " + slowedDownAmount);
+				//Debug.Log(slowedDownCooldown + ": " + slowedDownAmount);
 				transform.parent.parent.GetComponent<LevelSpeed>().setSpeedModifier(slowedDownAmount);
 			}
 		}
