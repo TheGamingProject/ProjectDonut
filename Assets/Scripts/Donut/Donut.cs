@@ -52,6 +52,13 @@ public class Donut : MonoBehaviour {
 			slowedDownCooldown = slowedDownTimeTotal = sugarpile.getSlowDownTimeLength();
 			Destroy(sugarpile.gameObject);
 		}
+
+		Ant ant = collider.gameObject.GetComponent<Ant>();
+		if (ant != null) {
+			GameObject.Find("GUI").GetComponentInChildren<InGameStates>().loseGame();
+			GetComponent<Controls>().setGameOver();
+			Destroy(ant.gameObject);
+		}
 		
 	}
 }

@@ -41,10 +41,15 @@ public class Ant : MonoBehaviour {
 			moveToStart();
 		}
 
+
+		var speedDifference = transform.parent.parent.GetComponent<LevelSpeed>().NonPlayerSpeedDifference;
 		if (speedupActive) {
-			movement = new Vector3(0, speedupSpeed * Time.deltaTime, 0);
-			transform.Translate(movement);
+			movement = new Vector3(0, (speedupSpeed + speedDifference) * Time.deltaTime, 0);
+		} else {
+			movement = new Vector3(0, speedDifference * Time.deltaTime, 0);
 		}
+
+		transform.Translate(movement);
 
 		if (transform.position.y < despawnY) {
 			Debug.Log("despawn ant");

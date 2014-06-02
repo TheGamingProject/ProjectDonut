@@ -21,6 +21,8 @@ public class Controls : MonoBehaviour
 
 	private Animator animator;
 
+	private bool gameOver = false;
+
 	// Use this for initialization
 	void Start () {
 		animator = GetComponentInChildren<Animator>();
@@ -29,7 +31,7 @@ public class Controls : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 		iPx = disableTilt ? 0 : Input.acceleration.x;
-		if (Mathf.Abs(iPx) > tiltThreshold) {
+		/*if (Mathf.Abs(iPx) > tiltThreshold) {
 			var inputX = Mathf.Sign(iPx);
 			if (Mathf.Abs(iPx) < fullSpeedTiltThreshold) halfSpeed = true;
 			else halfSpeed = false;
@@ -37,7 +39,19 @@ public class Controls : MonoBehaviour
 		} else if (Mathf.Abs(iPx) > 0 && Mathf.Abs(iPx) < tiltThreshold) {
 			release();
 			halfSpeed = false;
+		}*/
+
+		if (tiltThreshold <= Mathf.Abs(iPx) && Mathf.Abs(iPx) <= fullSpeedTiltThreshold) {
+			float inputX = Mathf.Sign(iPx);
+			iPx = (Mathf.Abs(iPx) > fullSpeedTiltThreshold) ? fullSpeedTiltThreshold : Mathf.Abs(iPx);
+			float normalization = (iPx - tiltThreshold) / (fullSpeedTiltThreshold - tiltThreshold);
+
+			press(inputX * normalization);
+		} else if (Mathf.Abs(iPx) < tiltThreshold) {
+			release();
+			halfSpeed = false;
 		}
+
 		//GameObject.Find("Debug").GetComponent<GUIText>().text = "Debug: " + iPx + " - " + halfSpeed;
 
 		// update flip animation
@@ -89,7 +103,7 @@ public class Controls : MonoBehaviour
 	}
 
 	public void press(float dir) {
-		if (isflipping) return;
+		if (gameOver || isflipping) return;
 
 		float speed = xSpeed * (halfSpeed ? .5f : 1);
 		movement = new Vector2(speed * dir, 0);
@@ -103,7 +117,7 @@ public class Controls : MonoBehaviour
 	}
 
 	public void flickedHorizontally(int dir) {
-		if (isflipping) return;
+		if (gameOver || isflipping) return;
 
 		isflipping = true;
 
@@ -126,6 +140,10 @@ public class Controls : MonoBehaviour
 		isflipping = false;
 		GetComponentInChildren<SprinkledDonutManager>().showSprinkles();
 		GetComponent<BoxCollider2D>().size = new Vector2(.6f,1f);
+	}
+
+	public void setGameOver () {
+		gameOver = true;
 	}
 }
 
