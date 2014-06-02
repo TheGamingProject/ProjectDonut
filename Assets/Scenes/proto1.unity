@@ -1019,7 +1019,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1437068963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1944696233}
@@ -1289,5 +1289,5 @@ MonoBehaviour:
   spawneePrefab: {fileID: 400000, guid: 451e8b859d8896e4e95eab4e9739263f, type: 2}
   intialSpawnTime: 1
   spawnXRange: 3.25
-  spawnY: 6
+  spawnY: 5.5999999
   spawnRate: {x: 1, y: 3}

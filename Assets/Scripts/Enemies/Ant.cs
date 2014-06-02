@@ -9,6 +9,11 @@ public class Ant : MonoBehaviour {
 	private float hungryCooldown;
 	public Vector2 hungryTimerRange = new Vector2(5, 20);
 
+	public Transform speedupWarnLabel;
+	public float speedupWarnTime = 1.0f;
+	private bool warned = false;
+	private Transform warnLabel;
+
 	private bool speedupActive = false;
 	public float speedupSpeed = -2.0f;
 	public float speedUpScaleSize = .75f;
@@ -18,18 +23,22 @@ public class Ant : MonoBehaviour {
 
 
 	void Start () {
-		hungryCooldown = RandomN.getRandomFloatByRange(hungryTimerRange);
+
 	}
 
 	void Update () {
-		moveToStart();
 
 		if (hungryCooldown > 0) {
 			hungryCooldown -= Time.deltaTime;
 
-			if (hungryCooldown <= 0) {
+
+			if (!warned && hungryCooldown <= 0) {
+				showSpeedupWarn();
+			} else if (warned && hungryCooldown <= 0) {
 				startSpeedup();
 			}
+		} else { 	
+			moveToStart();
 		}
 
 		if (speedupActive) {
@@ -43,15 +52,19 @@ public class Ant : MonoBehaviour {
 		}
 	}
 
+	void Destroy () {
+		Destroy(warnLabel.gameObject);
+	}
+
 	void OnTriggerEnter2D(Collider2D collider) {
 		
 		Sprinkle sprinkle = collider.gameObject.GetComponent<Sprinkle>();
-		if (sprinkle != null) {
+		if (sprinkle != null && hungryCooldown > 0) {
 			Debug.Log ("hit spinkl as ant");
 			//AudioSource noise = GetComponents<AudioSource>()[0];
 			//noise.Play();
 
-			startSpeedup();
+			showSpeedupWarn();
 
 			Destroy(sprinkle.gameObject);
 		}
@@ -72,7 +85,18 @@ public class Ant : MonoBehaviour {
 			
 			movement *= Time.deltaTime;
 			transform.Translate(movement);
-		} 
+		} else {
+			hungryCooldown = RandomN.getRandomFloatByRange(hungryTimerRange);
+		}
+	}
+
+	void showSpeedupWarn () {
+		if (warned) return;
+
+		Vector2 v = new Vector2(transform.position.x, speedupWarnLabel.position.y);
+		warnLabel = TransformFactory.make2dTransform(speedupWarnLabel, v, GameObject.Find ("GUI").transform);
+		hungryCooldown = speedupWarnTime;
+		warned = true;
 	}
 
 	void startSpeedup () {
