@@ -5,7 +5,7 @@ using TouchScript;
 public class Controls : MonoBehaviour
 {
 	public float xSpeed = 10.0f;
-	private Vector2 movement;
+	private Vector2 movementFromControls, movementFromFlip;
 
 	private float iPx = 0.0f;
 	public float tiltThreshold = .1f;
@@ -82,7 +82,7 @@ public class Controls : MonoBehaviour
 	}
 	
 	void FixedUpdate() {
-		rigidbody2D.velocity = movement;
+		rigidbody2D.velocity = movementFromControls + movementFromFlip;
 		
 		// from http://answers.unity3d.com/questions/509283/limit-a-sprite-to-not-go-off-screen.html 
 		
@@ -106,14 +106,14 @@ public class Controls : MonoBehaviour
 		if (gameOver || isflipping) return;
 
 		float speed = xSpeed * (halfSpeed ? .5f : 1);
-		movement = new Vector2(speed * dir, 0);
+		movementFromControls = new Vector2(speed * dir, 0);
 	}
 
 	public void release() {
 		if (isflipping) return;
 
 		if (Mathf.Abs(iPx) < tiltThreshold)
-			movement = new Vector2(0, 0);
+			movementFromControls = new Vector2(0, 0);
 	}
 
 	public void flickedHorizontally(int dir) {
@@ -121,25 +121,19 @@ public class Controls : MonoBehaviour
 
 		isflipping = true;
 
-		if (dir > 0) {
-			Debug.Log("flicked right");
-		} else {
-			Debug.Log("flicked left");
-		}
-
-		movement = new Vector2(flipSpeed * dir, 0);
+		movementFromFlip = new Vector2(flipSpeed * dir, 0);
 		animator.SetInteger("State", 1);
 		flipCooldown = flipTime;
 		GetComponentInChildren<SprinkledDonutManager>().hideSprinkles();
-		GetComponent<BoxCollider2D>().size = new Vector2(1f,1f);
+		GetComponent<BoxCollider2D>().size = new Vector2(1.2f,1f);
 	}
 	 
 	void endFlipping () {
 		animator.SetInteger("State", 0);
-		movement = new Vector2(0, 0);
+		movementFromFlip = new Vector2(0, 0);
 		isflipping = false;
 		GetComponentInChildren<SprinkledDonutManager>().showSprinkles();
-		GetComponent<BoxCollider2D>().size = new Vector2(.6f,1f);
+		GetComponent<BoxCollider2D>().size = new Vector2(1f,1f);
 	}
 
 	public void setGameOver () {

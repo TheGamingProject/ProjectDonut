@@ -35,6 +35,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
@@ -50,72 +51,80 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 100
-        height: 100
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: donut_roll_1
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: donut_roll_2
       rect:
         serializedVersion: 2
         x: 200
         y: 0
-        width: 100
-        height: 100
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: donut_roll_3
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: donut_roll_4
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: donut_roll_2
       rect:
         serializedVersion: 2
         x: 400
         y: 0
-        width: 100
-        height: 100
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
-    - name: donut_roll_5
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 100
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-    - name: donut_roll_6
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: donut_roll_3
       rect:
         serializedVersion: 2
         x: 600
         y: 0
-        width: 100
-        height: 100
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: donut_roll_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: donut_roll_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: donut_roll_6
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: donut_roll_7
       rect:
         serializedVersion: 2
-        x: 700
+        x: 1400
         y: 0
-        width: 100
-        height: 100
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

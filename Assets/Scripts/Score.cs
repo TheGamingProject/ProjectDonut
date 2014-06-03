@@ -3,12 +3,11 @@ using System.Collections;
 
 public class Score : MonoBehaviour {
 	private int score;
-	// Use this for initialization
+
 	void Start () {
-		
+		GetComponent<GUIText>().fontSize = Mathf.RoundToInt(Screen.width * 20f/262f);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		GetComponent<GUIText>().text = "score: " + score;
 	}

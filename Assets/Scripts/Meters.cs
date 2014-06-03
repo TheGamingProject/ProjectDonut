@@ -4,6 +4,10 @@ using System.Collections;
 public class Meters : MonoBehaviour {
 	private float meters = 0f;
 
+	void Start () {
+		GetComponent<GUIText>().fontSize = Mathf.RoundToInt(Screen.width * 20f/262f);
+	}
+
 	void Update () {
 		GetComponent<GUIText>().text = "meters: " + Mathf.Round(meters);
 	}

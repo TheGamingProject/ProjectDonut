@@ -8,7 +8,7 @@ public class SprinkledDonutManager : MonoBehaviour {
 	public int sprinkleLimit = 200;
 	private int spinkleCount = 0;
 
-	private float donutHeight = .85f, donutWidth = .70f;
+	public float donutHeight = .85f, donutWidth = .70f;
 	private int bottomZ = 1, topZ = -1;
 
 	void Start () {
