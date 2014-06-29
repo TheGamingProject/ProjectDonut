@@ -6,7 +6,7 @@ public class Donut : MonoBehaviour {
 	private float slowedDownAmount = 1.0f, slowedDownAmountTotal = .5f; // none
 	private float slowedDownCooldown = 0.0f, slowedDownTimeTotal = 0.0f;
 
-	public float sizePerEat = .1f;
+	//public float sizePerEat = .1f;
 
 	void Start () {
 
@@ -63,15 +63,15 @@ public class Donut : MonoBehaviour {
 		*/
 		DonutEnemy de = collider.gameObject.GetComponent<DonutEnemy>();
 		if (de != null) {
-			if (de.getSize() > transform.localScale.x) { // its bigger, player loses
+			//if (de.getSize() > transform.localScale.x) { // its bigger, player loses
 				GameObject.Find("GUI").GetComponentInChildren<InGameStates>().loseGame();
 				GetComponent<Controls>().setGameOver();
-			} else { // its smaller, player gets bigger
+			/*} else { // its smaller, player gets bigger
 				float newSize = transform.localScale.x + sizePerEat;
 				transform.localScale = new Vector3(newSize, newSize, 1.0f);
 				GameObject.Find("GUI").BroadcastMessage("addScore", 10);
 				Destroy(de.gameObject);
-			}
+			}*/
 
 		}
 	}
