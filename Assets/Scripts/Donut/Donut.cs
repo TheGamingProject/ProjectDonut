@@ -6,10 +6,15 @@ public class Donut : MonoBehaviour {
 	private float slowedDownAmount = 1.0f, slowedDownAmountTotal = .5f; // none
 	private float slowedDownCooldown = 0.0f, slowedDownTimeTotal = 0.0f;
 
+	public Transform nutShieldTransform;
+	public Sprite nutShield1;
+	public Sprite nutShield2;
+	private int nutShieldState = 0;
+
 	//public float sizePerEat = .1f;
 
 	void Start () {
-
+		initNutShieldTransform ();
 	}
 
 	void Update () {
@@ -53,19 +58,18 @@ public class Donut : MonoBehaviour {
 			slowedDownCooldown = slowedDownTimeTotal = sugarpile.getSlowDownTimeLength();
 			Destroy(sugarpile.gameObject);
 		}
-
-		Ant ant = collider.gameObject.GetComponent<Ant>();
-		if (ant != null) {
-			GameObject.Find("GUI").GetComponentInChildren<InGameStates>().loseGame();
-			GetComponent<Controls>().setGameOver();
-			Destroy(ant.gameObject);
-		}
 		*/
+		Nut nut = collider.gameObject.GetComponent<Nut> ();
+		if (nut != null) {
+			pickupNut(nut);
+		}
+
 		DonutEnemy de = collider.gameObject.GetComponent<DonutEnemy>();
 		if (de != null) {
+			getHitByDonutEnemy(de);
 			//if (de.getSize() > transform.localScale.x) { // its bigger, player loses
-				GameObject.Find("GUI").GetComponentInChildren<InGameStates>().loseGame();
-				GetComponent<Controls>().setGameOver();
+				//GameObject.Find("GUI").GetComponentInChildren<InGameStates>().loseGame();
+				//GetComponent<Controls>().setGameOver();
 			/*} else { // its smaller, player gets bigger
 				float newSize = transform.localScale.x + sizePerEat;
 				transform.localScale = new Vector3(newSize, newSize, 1.0f);
@@ -73,6 +77,40 @@ public class Donut : MonoBehaviour {
 				Destroy(de.gameObject);
 			}*/
 
+		}
+	}
+
+	void initNutShieldTransform () {
+		nutShieldTransform = transform.FindChild("nutshield");
+	}
+
+	void pickupNut (Nut nut) {
+		if (nutShieldState == 2) return;
+
+		nutShieldState++;
+		setNutShieldSprite ();
+
+		Destroy (nut.gameObject);
+	}
+
+	void setNutShieldSprite () {
+		if (nutShieldState == 0) {
+			nutShieldTransform.GetComponent<SpriteRenderer>().sprite = null;
+		} else if (nutShieldState == 1) {
+			nutShieldTransform.GetComponent<SpriteRenderer>().sprite = nutShield1;
+		} else if (nutShieldState == 2) {
+			nutShieldTransform.GetComponent<SpriteRenderer>().sprite = nutShield2;
+		} 
+	}
+
+	void getHitByDonutEnemy (DonutEnemy donutEnemy) {
+		if (nutShieldState == 0) {
+			GameObject.Find ("GUI").GetComponentInChildren<InGameStates> ().loseGame ();
+			GetComponent<Controls> ().setGameOver ();
+		} else {
+			nutShieldState--;
+			setNutShieldSprite();
+			Destroy(donutEnemy.gameObject);
 		}
 	}
 }

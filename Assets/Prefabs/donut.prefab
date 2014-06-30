@@ -216,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf92e9985d48fec42970690c8b22fd37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizePerEat: .100000001
+  nutShieldTransform: {fileID: 0}
+  nutShield1: {fileID: 21300000, guid: 7a6df724a44a042d1985ad29a0b49417, type: 3}
+  nutShield2: {fileID: 21300000, guid: 24f50f1f5fd3040e3b36210622c34d11, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
