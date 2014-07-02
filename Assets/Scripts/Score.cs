@@ -5,7 +5,7 @@ public class Score : MonoBehaviour {
 	private int score;
 
 	void Start () {
-		GetComponent<GUIText>().fontSize = Mathf.RoundToInt(Screen.width * 20f/262f);
+		GetComponent<GUIText>().fontSize = Mathf.RoundToInt(Screen.width * GetComponent<GUIText>().fontSize/262f);
 	}
 
 	void Update () {

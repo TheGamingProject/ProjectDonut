@@ -49,14 +49,14 @@ public class ControlsCatcher : MonoBehaviour
 
 	void OnGUI () {
 		int buttonWidth = Screen.width / 2;
-		int buttonHeight = (Screen.height / 6);
+		int buttonHeight = (Screen.height / 8);
 		bool modified = false;
 
 		if (
 			GUI.RepeatButton(
 			new Rect(
 			0,
-			Screen.height * 5 / 6,
+			Screen.height * 6 / 8,
 			buttonWidth,
 			buttonHeight
 			),
@@ -71,7 +71,7 @@ public class ControlsCatcher : MonoBehaviour
 			GUI.RepeatButton(
 			new Rect(
 			buttonWidth,
-			(Screen.height * 5 / 6),
+			(Screen.height * 6 / 8),
 			buttonWidth,
 			buttonHeight
 			),
@@ -88,4 +88,5 @@ public class ControlsCatcher : MonoBehaviour
 		}
 
 	}
+
 }

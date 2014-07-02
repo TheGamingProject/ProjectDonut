@@ -4,6 +4,9 @@ using System.Collections.Generic;
 public class Spawner : MonoBehaviour {
 	public Transform spawneePrefab;
 
+	public bool scaleWithLevelSpeed = false;
+	private LevelSpeed levelSpeed;
+
 	public float intialSpawnTime = 10.0f;
 	private float spawnCooldown;
 	
@@ -14,6 +17,7 @@ public class Spawner : MonoBehaviour {
 	
 	void Start () {
 		spawnCooldown = intialSpawnTime;
+		levelSpeed = transform.parent.GetComponent<LevelSpeed>();
 	}
 	
 	void Update () {
@@ -24,6 +28,11 @@ public class Spawner : MonoBehaviour {
 		if (CanSpawn) {
 			spawn();
 			spawnCooldown = RandomN.getRandomFloatByRange(spawnRate);
+
+			if (scaleWithLevelSpeed) {
+				Debug.Log (spawneePrefab.name + " " + spawnCooldown + " " + levelSpeed.NonPlayerSpeedRatio + " = " + (spawnCooldown / levelSpeed.NonPlayerSpeedRatio));
+				spawnCooldown /= levelSpeed.NonPlayerSpeedRatio;
+			}
 		}
 	}
 

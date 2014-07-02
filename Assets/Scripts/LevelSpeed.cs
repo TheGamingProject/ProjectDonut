@@ -48,4 +48,10 @@ public class LevelSpeed : MonoBehaviour {
 			return Speed - (baseSpeed + incrementedSpeed);
 		}
 	}
+
+	public float NonPlayerSpeedRatio {
+		get {
+			return Speed / (baseSpeed + incrementedSpeed);
+		}
+	}
 }
