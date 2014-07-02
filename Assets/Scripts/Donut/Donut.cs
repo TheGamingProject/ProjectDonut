@@ -142,7 +142,6 @@ public class Donut : MonoBehaviour {
 
 	void startCreamFillingBoost() {
 		creamState = true;
-		currentCreamPickups = 0;
 		creamCooldown = creamSpeedupTimeLength;
 		setCreamFillingSprite();
 		levelSpeed.setSpeedModifier(creamSpeedupValue);
@@ -154,6 +153,7 @@ public class Donut : MonoBehaviour {
 
 	void endCreamFillingBoost() {
 		creamState = false;
+		currentCreamPickups = 0;
 		setCreamFillingSprite();
 		levelSpeed.resetSpeedModifier();
 	}

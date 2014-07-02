@@ -278,9 +278,9 @@ MonoBehaviour:
   nutShield2: {fileID: 21300000, guid: 24f50f1f5fd3040e3b36210622c34d11, type: 3}
   creamSpeed: {fileID: 21300000, guid: 886933547f997b942b903d1cb5693875, type: 3}
   creamSpeedupTimeLength: 5
-  creamSpeedupValue: 2.29999995
+  creamSpeedupValue: 2.0999999
   creamPickupExtensionTimeLength: 2
-  creamPickupsNeeded: 2
+  creamPickupsNeeded: 3
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
