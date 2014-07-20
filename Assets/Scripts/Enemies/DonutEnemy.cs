@@ -27,7 +27,7 @@ public class DonutEnemy : MonoBehaviour {
 
 		transform.Translate(movement);
 		
-		if (transform.position.y < despawnY) {
+		if (transform.position.y > despawnY) {
 			Debug.Log("despawn ant");
 			Destroy(gameObject);
 		}

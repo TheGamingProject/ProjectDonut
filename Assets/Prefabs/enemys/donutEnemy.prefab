@@ -85,8 +85,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startY: 4.75
   startSizeRange: {x: .300000012, y: 1.20000005}
-  speedConstant: -2
-  despawnY: -20
+  speedConstant: 5
+  despawnY: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
