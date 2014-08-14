@@ -1,6 +1,15 @@
 fileFormatVersion: 2
 guid: c0359a3413c0e6b4cb7b7ab2d3d2eb6f
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: donut_roll_enemy_0
+    21300002: donut_roll_enemy_1
+    21300004: donut_roll_enemy_2
+    21300006: donut_roll_enemy_3
+    21300008: donut_roll_enemy_4
+    21300010: donut_roll_enemy_5
+    21300012: donut_roll_enemy_6
+    21300014: donut_roll_enemy_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

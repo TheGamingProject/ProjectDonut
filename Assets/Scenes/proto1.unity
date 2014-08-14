@@ -685,6 +685,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!212 &240607872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1427,7 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3be8f5e5a5d98049aa1b1b66587852d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 6.5
+  baseSpeed: 10.5
   incrementalSpeedRate: .0149999997
 --- !u!1 &2126231920
 GameObject:

@@ -1,6 +1,15 @@
 fileFormatVersion: 2
 guid: 5fc4ef7d85ae19f48bd8995147f102d8
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: donut_roll_0
+    21300002: donut_roll_1
+    21300004: donut_roll_2
+    21300006: donut_roll_3
+    21300008: donut_roll_4
+    21300010: donut_roll_5
+    21300012: donut_roll_6
+    21300014: donut_roll_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
