@@ -1428,7 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3be8f5e5a5d98049aa1b1b66587852d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 10.5
+  baseSpeed: 12
   incrementalSpeedRate: .0149999997
 --- !u!1 &2126231920
 GameObject:
@@ -1491,5 +1491,5 @@ MonoBehaviour:
   intialSpawnTime: 2
   spawnXRange: 3.0999999
   spawnY: -6.5
-  spawnRate: {x: .5, y: 1.5}
+  spawnRate: {x: .5, y: 1.25}
   spawnSpeedupConstant: .00499999989
