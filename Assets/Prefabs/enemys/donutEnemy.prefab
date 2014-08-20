@@ -100,6 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d048b357127184e9baab58a463459b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalTimeLength: .159999996
+  moveAmountRange: {x: .00999999978, y: .0299999993}
+  oppositeDirectionPercent: 5
+  stopDirectionPercent: 60
+  currentDirectionPercent: 35
+  neutralDirectionPercent: 10
+  neutralStayPercent: 80
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -238,10 +238,10 @@ MonoBehaviour:
   nutShield1: {fileID: 21300000, guid: 7a6df724a44a042d1985ad29a0b49417, type: 3}
   nutShield2: {fileID: 21300000, guid: 24f50f1f5fd3040e3b36210622c34d11, type: 3}
   creamSpeed: {fileID: 21300000, guid: 886933547f997b942b903d1cb5693875, type: 3}
-  creamSpeedupTimeLength: 5
-  creamSpeedupValue: 2.0999999
-  creamPickupExtensionTimeLength: 2
-  creamPickupsNeeded: 3
+  creamSpeedupTimeLength: 3
+  creamSpeedupValue: 2
+  creamPickupExtensionTimeLength: 0
+  creamPickupsNeeded: 1
 --- !u!82 &8304996
 AudioSource:
   m_ObjectHideFlags: 0
@@ -481,10 +481,6 @@ Prefab:
     - target: {fileID: 400000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
-      propertyPath: m_RootMapOrder
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
@@ -1482,7 +1478,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2126231920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426c6ae500ba93944a86c380c51d72f4, type: 3}
   m_Name: 

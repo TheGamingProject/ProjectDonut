@@ -45,7 +45,10 @@ public class Donut : MonoBehaviour {
 			}
 		}
 
-		updateCreamFilling();
+		updateCreamFillingCooldown();
+		if (creamState) {
+			updateCreamFillingBoost();
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -144,7 +147,26 @@ public class Donut : MonoBehaviour {
 		creamState = true;
 		creamCooldown = creamSpeedupTimeLength;
 		setCreamFillingSprite();
-		levelSpeed.setSpeedModifier(creamSpeedupValue);
+	}
+
+	float speedUptoCruisingSpeedDuration = 1.00f;
+	float startingSpeed = 1.0f;
+
+	void updateCreamFillingBoost() {
+		var cruisingSpeed = creamSpeedupValue;
+		var currentTime = creamSpeedupTimeLength - creamCooldown;
+
+		float speed = creamFillingEasing(creamSpeedupTimeLength - creamCooldown, 0, (cruisingSpeed - startingSpeed), speedUptoCruisingSpeedDuration) 
+				/ currentTime;
+		Debug.Log(currentTime + "/" + creamSpeedupTimeLength + " " + (speed) + "/" + (cruisingSpeed - startingSpeed) + " " + cruisingSpeed);
+		levelSpeed.setSpeedModifier(startingSpeed + speed);//creamSpeedupValue);
+	}
+
+	//float creamFillingEasing(float time, float startValue, float changeInValue, float duration) {
+	float creamFillingEasing(float t, float b, float c, float d) {
+		var ts=(t/=d)*t;
+		var tc=ts*t;
+		return b+c*(0.0500000000000025f*tc*ts + -1.05f*ts*ts + 3.5f*tc + -5f*ts + 3.5f*t);
 	}
 
 	void extendCreamFillingBoost() {
@@ -158,7 +180,7 @@ public class Donut : MonoBehaviour {
 		levelSpeed.resetSpeedModifier();
 	}
 
-	void updateCreamFilling() {
+	void updateCreamFillingCooldown() {
 		
 		if (creamState && creamCooldown > 0) {
 			creamCooldown -= Time.deltaTime;

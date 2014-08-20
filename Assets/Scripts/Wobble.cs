@@ -10,34 +10,37 @@ public class Wobble : MonoBehaviour {
 	float roll = 0.0f;
 	float last;
 
-	float timeLeft = 0;
-	float totalTime = 1.0f / 6.0f;
+	public float totalTimeLength = 1.0f / 6.0f;
 
-	float times = 20;
-	float count = 0;
+	float timeLeft = 0;
 	
-	Vector2 moveAmountRange = new Vector2(.01f, .03f);
+	public Vector2 moveAmountRange = new Vector2(.01f, .03f);
 	float added = 0.0f;
+
+	public float oppositeDirectionPercent = 5.0f;
+	public float stopDirectionPercent = 60.0f; // to neutral
+	public float currentDirectionPercent = 35.0f;
+
+	public float neutralDirectionPercent = 10.0f;
+	public float neutralStayPercent = 80.0f;
 
 	// 3 4 3    
 	void Update () {
 		if (timeLeft <= 0.0f) {
 			roll = RandomN.getRandomFloatByRange (0, 100);
 
-			float left = 10.0f;
-			float stay = 80.0f;
-
-			float right = 10.0f;
+			float left = neutralDirectionPercent;
+			float stay = neutralStayPercent;
+			float right = neutralDirectionPercent;
 		
-
 			if (last == -1) {
-					left = 35.0f;
-					stay = 60.0f;
-					right = 5.0f;
+				left = currentDirectionPercent;
+				stay = stopDirectionPercent;
+				right = oppositeDirectionPercent;
 			} else if (last == 1) {
-					left = 5.0f;
-					stay = 60.0f;
-					right = 35.0f;
+				left = oppositeDirectionPercent;
+				stay = stopDirectionPercent;
+				right = currentDirectionPercent;
 			}
 
 			if (roll < left) {
@@ -49,7 +52,7 @@ public class Wobble : MonoBehaviour {
 			}
 
 			last = added;
-			timeLeft = totalTime;
+			timeLeft = totalTimeLength;
 		} else {
 			timeLeft -= Time.deltaTime;
 		}

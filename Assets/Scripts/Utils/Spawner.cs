@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour {
 			spawnCooldown = RandomN.getRandomFloatByRange(spawnRate);
 
 			if (scaleWithLevelSpeed) {
-				Debug.Log (spawneePrefab.name + " " + spawnCooldown + " " + levelSpeed.NonPlayerSpeedRatio + " = " + (spawnCooldown / levelSpeed.NonPlayerSpeedRatio));
+//				Debug.Log (spawneePrefab.name + " " + spawnCooldown + " " + levelSpeed.NonPlayerSpeedRatio + " = " + (spawnCooldown / levelSpeed.NonPlayerSpeedRatio));
 				spawnCooldown /= levelSpeed.NonPlayerSpeedRatio;
 			}
 		}
