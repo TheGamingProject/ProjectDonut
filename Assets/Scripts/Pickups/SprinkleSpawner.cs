@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SprinkleSpawner : MonoBehaviour {
 	public Transform spawneePrefab;
 	public float spawnRate = 2.0f;
+	public float dumbSpawnRateMinus = .1f;
 	
 	private float spawnCooldown;
 	private int spawnedCount = 0;
@@ -15,6 +16,8 @@ public class SprinkleSpawner : MonoBehaviour {
 	private SpawnPattern currentSpawnPattern; 
 
 	public Vector2 timeInBetweenPatternsRange = new Vector2(.5f, 1.5f);
+
+	public float thickyLineSpawnRadius = .4f;
 
 	void Start () {
 		spawnCooldown = spawnRate;
@@ -53,9 +56,10 @@ public class SprinkleSpawner : MonoBehaviour {
 
 	private SpawnPattern getRandomPattern () {
 		Dictionary<int, float> weights = new Dictionary<int, float>();
-		weights.Add(0, 40f);
-		weights.Add(1, 40f);
-		weights.Add(2, 20f);
+		weights.Add(0, 25f);
+		weights.Add(1, 5.0f);
+		weights.Add(2, 40f);
+		weights.Add(3, 30f);
 		var pick = Weighted.getWeightedPick(weights);
 
 		switch (pick) {
@@ -65,6 +69,8 @@ public class SprinkleSpawner : MonoBehaviour {
 			return getLanePattern();
 		case 2:
 			return getDumbPattern();
+		case 3:
+			return getThickyLinePattern();
 		default:
 			return null;
 		}
@@ -92,14 +98,14 @@ public class SprinkleSpawner : MonoBehaviour {
 		SpawnPattern pattern = new SpawnPattern();
 
 		float x =  Random.Range(0, spawnXRange) - spawnXRange/2;
-		int length = Random.Range(0, 15) + 5;
+		int length = Random.Range(0, 15) + 15;
 
 		for (int i=0; i<length; i++) {
 			Spawn s = new Spawn();
 			
 			x = x + Random.Range(0, maxRandomDistX * 2) - maxRandomDistX;
 			s.location = new Vector2(x, spawnY);
-			s.cooldown = spawnRate;
+			s.cooldown = spawnRate - dumbSpawnRateMinus;
 			
 			pattern.spawns.Add(s);
 		}
@@ -125,6 +131,24 @@ public class SprinkleSpawner : MonoBehaviour {
 			pattern.spawns.Add(s);
 		}
 		
+		return pattern;
+	}
+
+	private SpawnPattern getThickyLinePattern () {
+		SpawnPattern pattern = new SpawnPattern();
+
+		float startX = Random.Range(0, spawnXRange) - spawnXRange/2;
+
+		int length = Random.Range(0, 40) + 20;
+
+		for (int i=0; i < length; i++) {
+			Spawn s = new Spawn();
+			float x = Random.Range(0.0f, thickyLineSpawnRadius);
+			s.location = new Vector2(x, spawnY);
+			s.cooldown = spawnRate - 1.0f;
+
+			pattern.spawns.Add(s);
+		}
 		return pattern;
 	}
 }

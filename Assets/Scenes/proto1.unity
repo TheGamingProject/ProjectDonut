@@ -170,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 8304988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
+  m_LocalScale: {x: .689999998, y: .779999971, z: 1}
   m_Children:
   - {fileID: 108265187}
   - {fileID: 240607873}
@@ -485,6 +485,14 @@ Prefab:
     - target: {fileID: 400000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
       propertyPath: m_RootMapOrder
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f64003edfdf890d46becbc628aab6a8e, type: 2}
@@ -1225,10 +1233,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawneePrefab: {fileID: 400000, guid: b8060c5c1dee8df4b996091a7edb413f, type: 2}
   spawnRate: .100000001
+  dumbSpawnRateMinus: .100000001
   spawnXRange: 5
   spawnY: -20
   maxRandomDistX: .75
   timeInBetweenPatternsRange: {x: .5, y: 1.5}
+  thickyLineSpawnRadius: .600000024
 --- !u!114 &1527205058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1492,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2126231920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426c6ae500ba93944a86c380c51d72f4, type: 3}
   m_Name: 
