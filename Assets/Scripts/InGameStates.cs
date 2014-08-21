@@ -27,7 +27,7 @@ public class InGameStates : MonoBehaviour {
 			Screen.width,
 			200
 			),
-			"score/meters...play again!"
+			"crumbled, roll again?!"
 			) 
 			) 
 		{
